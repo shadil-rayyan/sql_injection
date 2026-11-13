@@ -1,0 +1,13 @@
+case_id,category,sql,ast_accepted,fingerprint_approved,query_policy_accepted,authorizer_accepted,ast_error,authorizer_message
+STR-01,Unauthorized table access,SELECT * FROM security_events,False,N/A,False,N/A,Access to an unapproved table.,no such table: security_events
+STR-02,UPDATE operation,UPDATE students SET cgpa = 0,False,N/A,False,False,Only SELECT queries are permitted.,not authorized
+STR-03,DELETE operation,DELETE FROM students,False,N/A,False,False,Only SELECT queries are permitted.,not authorized
+STR-04,DROP operation,DROP TABLE students,False,N/A,False,False,Only SELECT queries are permitted.,not authorized
+STR-05,ALTER operation,ALTER TABLE students ADD COLUMN test TEXT,False,N/A,False,False,Only SELECT queries are permitted.,not authorized
+STR-06,UNION query,SELECT name FROM students UNION SELECT name FROM security_events,False,N/A,False,N/A,Only SELECT queries are permitted.,no such table: security_events
+STR-07,Multiple SQL statements,SELECT name FROM students; DELETE FROM students,False,N/A,False,N/A,Only one SQL statement is permitted.,You can only execute one statement at a time.
+STR-08,Unapproved SQL function,SELECT random() FROM students,False,N/A,False,False,Unapproved SQL function: rand,not authorized to use function: random
+STR-09,Dangerous SQL function,SELECT load_extension('test') FROM students,False,N/A,False,False,Unapproved SQL function: anonymous,not authorized to use function: load_extension
+STR-10,Modified query structure,SELECT cgpa FROM students WHERE cgpa > 8,True,False,False,True,,Statement permitted by authorizer
+STR-11,Unapproved query structure,SELECT name FROM students,True,False,False,True,,Statement permitted by authorizer
+STR-12,Unauthorized database attachment,ATTACH DATABASE 'other.db' AS other,False,N/A,False,False,Only SELECT queries are permitted.,not authorized

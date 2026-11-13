@@ -1,0 +1,8 @@
+category,Total_Cases,Detected,Average_Time_ms,Detection_Rate_Percent
+Boolean-based,20,9,4.442465,45.0
+Comment-based,15,11,3.9917933333333333,73.33
+Error-based,15,15,3.4627266666666667,100.0
+Schema manipulation,10,10,3.2638399999999996,100.0
+Stacked queries,10,10,3.19888,100.0
+UNION-based,20,20,3.6256250000000003,100.0
+UPDATE/DELETE,10,10,3.63943,100.0

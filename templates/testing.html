@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}SQL Testing | SQL Shield{% endblock %}
+
+{% block content %}
+
+<div class="page-heading">
+    <h1>SQL Injection Testing</h1>
+    <p>Compare Traditional and Advanced security configurations.</p>
+</div>
+
+<section class="testing-form">
+
+    <h2>Configure Your Test</h2>
+
+    <form method="POST" action="{{ url_for('testing') }}">
+
+        <div class="testing-input-grid">
+
+            <div class="filter-group">
+                <label>Input Field</label>
+
+                <select name="input_field" required>
+                    <option value="name">Student Name</option>
+                    <option value="department">Department</option>
+                    <option value="semester">Semester</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Test Input</label>
+
+                <input type="text" name="input_value" placeholder="Enter a test value" required>
+            </div>
+
+            <div class="filter-group">
+                <label>Security Configuration</label>
+
+                <select name="configuration" required>
+                    <option value="Traditional">Traditional</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="Both">Compare Both</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button type="submit" class="primary-btn run-test-btn">
+            Run Security Test
+        </button>
+
+    </form>
+
+</section>
+
+{% if error_message %}
+<div class="test-error">
+    {{ error_message }}
+</div>
+{% endif %}
+
+{% if submitted and results %}
+
+<section class="test-results">
+
+    <h2>Test Results</h2>
+
+    <div class="result-grid">
+
+        {% for result in results %}
+
+        <div class="result-card">
+
+            <h3>{{ result.configuration }} Configuration</h3>
+
+            <div class="result-status">
+
+                {% if result.blocked %}
+                <span class="result-badge blocked">
+                    Request Blocked
+                </span>
+                {% else %}
+                <span class="result-badge allowed">
+                    Request Executed
+                </span>
+                {% endif %}
+
+            </div>
+
+            <div class="result-detail">
+                <span>Input Detection</span>
+
+                <strong>
+                    {% if result.detected == "N/A" %}
+                    Not applicable
+                    {% elif result.detected %}
+                    Suspicious input detected
+                    {% else %}
+                    No suspicious input detected
+                    {% endif %}
+                </strong>
+            </div>
+
+            <div class="result-detail">
+                <span>Execution Time</span>
+                <strong>{{ result.execution_time }} ms</strong>
+            </div>
+
+            <div class="result-detail">
+                <span>Matching Student Records</span>
+                <strong>{{ result.record_count }}</strong>
+            </div>
+
+            {% if result.error %}
+            <div class="test-error">
+                {{ result.error }}
+            </div>
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% for result in results %}
+
+    {% if not result.blocked and result.records %}
+
+    <div class="table-container result-table">
+
+        <h3>{{ result.configuration }} - Returned Records</h3>
+
+        <table class="student-table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Semester</th>
+                    <th>CGPA</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for student in result.records %}
+
+                <tr>
+                    <td>{{ student.student_id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.department }}</td>
+                    <td>{{ student.semester }}</td>
+                    <td>{{ student.cgpa }}</td>
+                    <td>{{ student.email }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% elif not result.blocked %}
+
+    <p class="no-results">
+        No matching student records found for
+        {{ result.configuration }}.
+    </p>
+
+    {% endif %}
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% endblock %}

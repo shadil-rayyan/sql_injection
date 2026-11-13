@@ -1,0 +1,10 @@
+Metric,Count,Percentage
+Total structural test cases,12,100.0
+AST rejected,10,83.33
+AST accepted,2,16.67
+Fingerprint tested,2,16.67
+Fingerprint rejected among tested,2,100.0
+Combined query policy rejected,12,100.0
+SQLite authorizer denied,7,58.33
+SQLite authorizer allowed,2,16.67
+SQLite authorizer inconclusive,3,25.0

@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}Results & Analysis | SQL Shield{% endblock %}
+
+{% block content %}
+
+<div class="page-heading">
+    <h1>Results & Analysis</h1>
+    <p>Experimental comparison of Traditional and Advanced SQL injection security configurations.</p>
+</div>
+
+<!-- Performance comparison -->
+
+<section class="analysis-section">
+
+    <h2>Performance Comparison</h2>
+
+    {% if comparison %}
+
+    <div class="analysis-table-container">
+        <table class="analysis-table">
+
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    {% for item in comparison %}
+                    <th>{{ item["Configuration"] }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Total Executions</td>
+                    {% for item in comparison %}
+                    <td>{{ item["Total_Executions"] }}</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td>Average Execution Time</td>
+                    {% for item in comparison %}
+                    <td>{{ item["Average_Execution_Time_ms"] }} ms</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td>Median Execution Time</td>
+                    {% for item in comparison %}
+                    <td>{{ item["Median_Execution_Time_ms"] }} ms</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td>Legitimate Request Success</td>
+                    {% for item in comparison %}
+                    <td>{{ item["Legitimate_Request_Success_Percent"] }}%</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td>Database Integrity</td>
+                    {% for item in comparison %}
+                    <td>{{ item["Database_Integrity_Percent"] }}%</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td>Safe Parameter Handling</td>
+                    {% for item in comparison %}
+                    <td>{{ item["Safe_Parameter_Handling_Percent"] }}%</td>
+                    {% endfor %}
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+    {% else %}
+    <p class="empty-message">Performance results are not available. Run the evaluation first.</p>
+    {% endif %}
+
+</section>
+
+
+<!-- Traditional detection metrics -->
+
+<section class="analysis-section">
+
+    <h2>Input Detection Analysis</h2>
+
+    {% for item in comparison %}
+
+    {% if item["Configuration"] == "Traditional" %}
+
+    <div class="metrics-grid">
+
+        <div class="metric-card">
+            <h3>{{ item["Detection_Rate_Percent"] }}%</h3>
+            <p>Detection Rate</p>
+        </div>
+
+        <div class="metric-card">
+            <h3>{{ item["False_Positive_Rate_Percent"] }}%</h3>
+            <p>False Positive Rate</p>
+        </div>
+
+        <div class="metric-card">
+            <h3>{{ item["Precision_Percent"] }}%</h3>
+            <p>Precision</p>
+        </div>
+
+        <div class="metric-card">
+            <h3>{{ item["TP"] }}</h3>
+            <p>True Positives</p>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    {% endfor %}
+
+    <p class="analysis-note">
+        Input-level detection metrics are reported for the Traditional
+        regex-based detector. The Advanced configuration validates
+        SQL query structures rather than classifying input values.
+    </p>
+
+</section>
+
+
+<!-- Structural evaluation -->
+
+<section class="analysis-section">
+
+    <h2>Structural Security Evaluation</h2>
+
+    {% if structural %}
+
+    <div class="analysis-table-container">
+
+        <table class="analysis-table">
+
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Number of Cases</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in structural %}
+
+                <tr>
+                    <td>{{ item["Metric"] }}</td>
+                    <td>{{ item["Count"] }}</td>
+                    <td>{{ item["Percentage"] }}%</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+    <p class="empty-message">Structural results are not available. Run the structural evaluation first.</p>
+    {% endif %}
+
+</section>
+
+
+<!-- Category analysis -->
+
+<section class="analysis-section">
+
+    <h2>Detection by Attack Category</h2>
+
+    {% if categories %}
+
+    <div class="analysis-table-container">
+
+        <table class="analysis-table">
+
+            <thead>
+                <tr>
+                    <th>Attack Category</th>
+                    <th>Total Cases</th>
+                    <th>Detected</th>
+                    <th>Detection Rate</th>
+                    <th>Average Time (ms)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in categories %}
+
+                <tr>
+                    <td>{{ item["category"] }}</td>
+                    <td>{{ item["Total_Cases"] }}</td>
+                    <td>{{ item["Detected"] }}</td>
+                    <td>{{ item["Detection_Rate_Percent"] }}%</td>
+                    <td>{{ "%.4f"|format(item["Average_Time_ms"]|float) }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+    <p class="empty-message">Category results are not available.</p>
+    {% endif %}
+
+</section>
+
+
+<!-- Experimental graphs -->
+
+<section class="analysis-section">
+
+    <h2>Experimental Graphs</h2>
+
+    <p class="section-description">
+        Visual representation of the experimental results.
+        Select a graph to view it in full size.
+    </p>
+
+    <div class="graph-grid">
+
+        {% for graph in graphs %}
+
+        <div class="graph-card">
+
+            <h3>{{ graph["title"] }}</h3>
+
+            <a href="{{ url_for('result_graph', filename=graph['filename']) }}" target="_blank">
+                <img src="{{ url_for('result_graph', filename=graph['filename']) }}" alt="{{ graph['title'] }}"
+                    loading="lazy">
+            </a>
+
+            <p>{{ graph["description"] }}</p>
+
+        </div>
+
+        {% else %}
+
+        <p class="empty-message">
+            No graphs found. Generate the experimental graphs first.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

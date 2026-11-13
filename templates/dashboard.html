@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | SQL Shield{% endblock %}
+
+{% block content %}
+
+<div class="page-heading">
+    <div>
+        <h1>Security Dashboard</h1>
+        <p>Overview of your database and security platform.</p>
+    </div>
+</div>
+
+<section class="dashboard-stats">
+
+    <div class="stat-card">
+        <div class="stat-icon">👨‍🎓</div>
+        <h2>{{ total_students }}</h2>
+        <p>Total Students</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🏢</div>
+        <h2>{{ total_departments }}</h2>
+        <p>Departments</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🛡️</div>
+        <h2>2</h2>
+        <p>Security Configurations</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">📋</div>
+        <h2>{{ total_events }}</h2>
+        <p>Security Events</p>
+    </div>
+
+</section>
+
+<section class="dashboard-section">
+
+    <h2>Security Configurations</h2>
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+            <h3>Traditional Configuration</h3>
+            <p>
+                Regex-based suspicious input detection
+                with parameterized SQL queries.
+            </p>
+            <span class="status-label">Available</span>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Advanced Configuration</h3>
+            <p>
+                AST validation, approved query fingerprints
+                and SQLite runtime authorization.
+            </p>
+            <span class="status-label">Available</span>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="dashboard-section quick-links">
+
+    <h2>Quick Actions</h2>
+
+    <div class="dashboard-cards">
+
+        <a href="{{ url_for('students') }}" class="action-card">
+            <h3>View Students</h3>
+            <p>Browse and search student records.</p>
+        </a>
+
+        <a href="{{ url_for('testing') }}" class="action-card">
+            <h3>SQL Injection Testing</h3>
+            <p>Test input using security configurations.</p>
+        </a>
+
+        <a href="{{ url_for('results') }}" class="action-card">
+            <h3>View Results</h3>
+            <p>Explore experimental results and graphs.</p>
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

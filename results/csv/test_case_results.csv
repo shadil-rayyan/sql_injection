@@ -1,0 +1,401 @@
+case_id,category,label,input_field,input_value,configuration,input_detected,blocked,safe_execution,safe_parameter_handling,legitimate_success,database_integrity,execution_time_ms,error
+BOO-01,Boolean-based,malicious,name,' OR 1=1 --,Traditional,True,True,False,False,False,True,2.7079,Request blocked: suspicious input detected in name.
+BOO-02,Boolean-based,malicious,name,' OR '1'='1,Traditional,False,False,True,True,False,True,4.3996,
+BOO-03,Boolean-based,malicious,name,""" OR ""1""=""1",Traditional,False,False,True,True,False,True,4.6792,
+BOO-04,Boolean-based,malicious,name,admin' OR '1'='1,Traditional,False,False,True,True,False,True,12.8666,
+BOO-05,Boolean-based,malicious,name,' OR 1=1#,Traditional,False,False,True,True,False,True,5.043,
+BOO-06,Boolean-based,malicious,name,') OR ('1'='1,Traditional,False,False,True,True,False,True,4.8521,
+BOO-07,Boolean-based,malicious,name,' OR 2>1 --,Traditional,True,True,False,False,False,True,2.6933,Request blocked: suspicious input detected in name.
+BOO-08,Boolean-based,malicious,name,1 OR 1=1,Traditional,False,False,True,True,False,True,3.9347,
+BOO-09,Boolean-based,malicious,name,' AND 1=1 --,Traditional,True,True,False,False,False,True,2.8752,Request blocked: suspicious input detected in name.
+BOO-10,Boolean-based,malicious,name,' OR 'a'='a,Traditional,False,False,True,True,False,True,5.5809,
+BOO-11,Boolean-based,malicious,name,') OR 1=1 --,Traditional,True,True,False,False,False,True,2.7769,Request blocked: suspicious input detected in name.
+BOO-12,Boolean-based,malicious,name,admin') OR ('x'='x,Traditional,False,False,True,True,False,True,4.8664,
+BOO-13,Boolean-based,malicious,name,' OR 5=5 --,Traditional,True,True,False,False,False,True,3.0071,Request blocked: suspicious input detected in name.
+BOO-14,Boolean-based,malicious,name,' OR 7>3 --,Traditional,True,True,False,False,False,True,2.8649,Request blocked: suspicious input detected in name.
+BOO-15,Boolean-based,malicious,name,' AND 'x'='x,Traditional,False,False,True,True,False,True,4.7537,
+BOO-16,Boolean-based,malicious,name,1' OR '1'='1' --,Traditional,True,True,False,False,False,True,3.659,Request blocked: suspicious input detected in name.
+BOO-17,Boolean-based,malicious,name,') OR ('a'='a,Traditional,False,False,True,True,False,True,5.0068,
+BOO-18,Boolean-based,malicious,name,' OR 9=9#,Traditional,False,False,True,True,False,True,5.8436,
+BOO-19,Boolean-based,malicious,name,' OR 4<5 --,Traditional,True,True,False,False,False,True,3.2216,Request blocked: suspicious input detected in name.
+BOO-20,Boolean-based,malicious,name,' OR TRUE --,Traditional,True,True,False,False,False,True,3.2168,Request blocked: suspicious input detected in name.
+UNI-01,UNION-based,malicious,name,' UNION SELECT NULL --,Traditional,True,True,False,False,False,True,5.1489,Request blocked: suspicious input detected in name.
+UNI-02,UNION-based,malicious,name,"' UNION SELECT 1,2,3 --",Traditional,True,True,False,False,False,True,3.5906,Request blocked: suspicious input detected in name.
+UNI-03,UNION-based,malicious,name,' UNION ALL SELECT NULL --,Traditional,True,True,False,False,False,True,3.2813,Request blocked: suspicious input detected in name.
+UNI-04,UNION-based,malicious,name,' UNION SELECT name FROM students --,Traditional,True,True,False,False,False,True,3.2362,Request blocked: suspicious input detected in name.
+UNI-05,UNION-based,malicious,name,' UNION SELECT student_id FROM students --,Traditional,True,True,False,False,False,True,3.2891,Request blocked: suspicious input detected in name.
+UNI-06,UNION-based,malicious,name,' UNION SELECT email FROM students --,Traditional,True,True,False,False,False,True,3.5712,Request blocked: suspicious input detected in name.
+UNI-07,UNION-based,malicious,name,"' UNION SELECT 1,2,3,4 --",Traditional,True,True,False,False,False,True,3.2372,Request blocked: suspicious input detected in name.
+UNI-08,UNION-based,malicious,name,"' UNION ALL SELECT 1,2 --",Traditional,True,True,False,False,False,True,3.5262,Request blocked: suspicious input detected in name.
+UNI-09,UNION-based,malicious,name,' UNION SELECT department FROM students --,Traditional,True,True,False,False,False,True,4.0171,Request blocked: suspicious input detected in name.
+UNI-10,UNION-based,malicious,name,' UNION SELECT cgpa FROM students --,Traditional,True,True,False,False,False,True,4.3464,Request blocked: suspicious input detected in name.
+UNI-11,UNION-based,malicious,name,' UNION SELECT semester FROM students --,Traditional,True,True,False,False,False,True,3.6617,Request blocked: suspicious input detected in name.
+UNI-12,UNION-based,malicious,name,' UNION SELECT admission_year FROM students --,Traditional,True,True,False,False,False,True,3.2466,Request blocked: suspicious input detected in name.
+UNI-13,UNION-based,malicious,name,"' UNION SELECT NULL,NULL --",Traditional,True,True,False,False,False,True,3.2323,Request blocked: suspicious input detected in name.
+UNI-14,UNION-based,malicious,name,"' UNION ALL SELECT name,email FROM students --",Traditional,True,True,False,False,False,True,3.4871,Request blocked: suspicious input detected in name.
+UNI-15,UNION-based,malicious,name,"' UNION SELECT student_id,name FROM students --",Traditional,True,True,False,False,False,True,4.2996,Request blocked: suspicious input detected in name.
+UNI-16,UNION-based,malicious,name,' UNION SELECT 1 --,Traditional,True,True,False,False,False,True,5.0681,Request blocked: suspicious input detected in name.
+UNI-17,UNION-based,malicious,name,' UNION SELECT 'test' --,Traditional,True,True,False,False,False,True,3.188,Request blocked: suspicious input detected in name.
+UNI-18,UNION-based,malicious,name,' UNION ALL SELECT department FROM students --,Traditional,True,True,False,False,False,True,3.1818,Request blocked: suspicious input detected in name.
+UNI-19,UNION-based,malicious,name,"' UNION SELECT email, name FROM students --",Traditional,True,True,False,False,False,True,2.6566,Request blocked: suspicious input detected in name.
+UNI-20,UNION-based,malicious,name,"' UNION SELECT NULL,NULL,NULL --",Traditional,True,True,False,False,False,True,3.2465,Request blocked: suspicious input detected in name.
+COM-01,Comment-based,malicious,name,admin'--,Traditional,True,True,False,False,False,True,3.4655,Request blocked: suspicious input detected in name.
+COM-02,Comment-based,malicious,name,admin' #,Traditional,False,False,True,True,False,True,5.6369,
+COM-03,Comment-based,malicious,name,' OR 1=1 --,Traditional,True,True,False,False,False,True,3.4371,Request blocked: suspicious input detected in name.
+COM-04,Comment-based,malicious,name,' OR 1=1 #,Traditional,False,False,True,True,False,True,5.4032,
+COM-05,Comment-based,malicious,name,test'/*,Traditional,True,True,False,False,False,True,4.2639,Request blocked: suspicious input detected in name.
+COM-06,Comment-based,malicious,name,name'-- ,Traditional,True,True,False,False,False,True,3.7911,Request blocked: suspicious input detected in name.
+COM-07,Comment-based,malicious,name,';--,Traditional,True,True,False,False,False,True,3.5657,Request blocked: suspicious input detected in name.
+COM-08,Comment-based,malicious,name,'#,Traditional,False,False,True,True,False,True,3.8999,
+COM-09,Comment-based,malicious,name,admin')--,Traditional,True,True,False,False,False,True,3.1589,Request blocked: suspicious input detected in name.
+COM-10,Comment-based,malicious,name,' OR 'x'='x'--,Traditional,True,True,False,False,False,True,3.5863,Request blocked: suspicious input detected in name.
+COM-11,Comment-based,malicious,name,student'/*comment*/,Traditional,True,True,False,False,False,True,3.5243,Request blocked: suspicious input detected in name.
+COM-12,Comment-based,malicious,name,' AND 1=1--,Traditional,True,True,False,False,False,True,3.1445,Request blocked: suspicious input detected in name.
+COM-13,Comment-based,malicious,name,test'/**/--,Traditional,True,True,False,False,False,True,3.7224,Request blocked: suspicious input detected in name.
+COM-14,Comment-based,malicious,name,' OR 2=2#,Traditional,False,False,True,True,False,True,5.3816,
+COM-15,Comment-based,malicious,name,user'--comment,Traditional,True,True,False,False,False,True,3.8956,Request blocked: suspicious input detected in name.
+ERR-01,Error-based,malicious,name,' AND 1=CAST('x' AS INTEGER) --,Traditional,True,True,False,False,False,True,2.7514,Request blocked: suspicious input detected in name.
+ERR-02,Error-based,malicious,name,' AND abs(-9223372036854775808) --,Traditional,True,True,False,False,False,True,3.8167,Request blocked: suspicious input detected in name.
+ERR-03,Error-based,malicious,name,' AND load_extension('x') --,Traditional,True,True,False,False,False,True,4.0155,Request blocked: suspicious input detected in name.
+ERR-04,Error-based,malicious,name,' AND randomblob(100000000) --,Traditional,True,True,False,False,False,True,3.2861,Request blocked: suspicious input detected in name.
+ERR-05,Error-based,malicious,name,"' AND json_extract('invalid','$.x') --",Traditional,True,True,False,False,False,True,3.0904,Request blocked: suspicious input detected in name.
+ERR-06,Error-based,malicious,name,' AND zeroblob(-1) --,Traditional,True,True,False,False,False,True,4.5243,Request blocked: suspicious input detected in name.
+ERR-07,Error-based,malicious,name,"' AND substr('x',-1,-1) --",Traditional,True,True,False,False,False,True,3.157,Request blocked: suspicious input detected in name.
+ERR-08,Error-based,malicious,name,' AND unicode('x')=1 --,Traditional,True,True,False,False,False,True,3.1896,Request blocked: suspicious input detected in name.
+ERR-09,Error-based,malicious,name,"' AND printf('%999999999s','x') --",Traditional,True,True,False,False,False,True,3.3881,Request blocked: suspicious input detected in name.
+ERR-10,Error-based,malicious,name,' AND json('invalid') --,Traditional,True,True,False,False,False,True,3.3194,Request blocked: suspicious input detected in name.
+ERR-11,Error-based,malicious,name,' AND date('invalid')='x' --,Traditional,True,True,False,False,False,True,3.0042,Request blocked: suspicious input detected in name.
+ERR-12,Error-based,malicious,name,' AND char(-1)='x' --,Traditional,True,True,False,False,False,True,3.0699,Request blocked: suspicious input detected in name.
+ERR-13,Error-based,malicious,name,' AND hex(randomblob(10))='x' --,Traditional,True,True,False,False,False,True,3.5031,Request blocked: suspicious input detected in name.
+ERR-14,Error-based,malicious,name,"' AND replace('x','x','y')='z' --",Traditional,True,True,False,False,False,True,3.8568,Request blocked: suspicious input detected in name.
+ERR-15,Error-based,malicious,name,' AND lower('X')='x' --,Traditional,True,True,False,False,False,True,3.9684,Request blocked: suspicious input detected in name.
+STA-01,Stacked queries,malicious,name,'; SELECT * FROM students;--,Traditional,True,True,False,False,False,True,3.254,Request blocked: suspicious input detected in name.
+STA-02,Stacked queries,malicious,name,'; SELECT 1;--,Traditional,True,True,False,False,False,True,3.002,Request blocked: suspicious input detected in name.
+STA-03,Stacked queries,malicious,name,'; DELETE FROM students;--,Traditional,True,True,False,False,False,True,3.3754,Request blocked: suspicious input detected in name.
+STA-04,Stacked queries,malicious,name,'; UPDATE students SET cgpa=0;--,Traditional,True,True,False,False,False,True,3.5895,Request blocked: suspicious input detected in name.
+STA-05,Stacked queries,malicious,name,'; INSERT INTO students VALUES(1);--,Traditional,True,True,False,False,False,True,2.7844,Request blocked: suspicious input detected in name.
+STA-06,Stacked queries,malicious,name,'; DROP TABLE students;--,Traditional,True,True,False,False,False,True,3.2235,Request blocked: suspicious input detected in name.
+STA-07,Stacked queries,malicious,name,'; ALTER TABLE students ADD COLUMN test TEXT;--,Traditional,True,True,False,False,False,True,3.1787,Request blocked: suspicious input detected in name.
+STA-08,Stacked queries,malicious,name,'; CREATE TABLE injected(id INTEGER);--,Traditional,True,True,False,False,False,True,3.1358,Request blocked: suspicious input detected in name.
+STA-09,Stacked queries,malicious,name,'; DELETE FROM security_events;--,Traditional,True,True,False,False,False,True,3.2436,Request blocked: suspicious input detected in name.
+STA-10,Stacked queries,malicious,name,'; UPDATE students SET name='test';--,Traditional,True,True,False,False,False,True,3.2019,Request blocked: suspicious input detected in name.
+UPD-01,UPDATE/DELETE,malicious,name,'; UPDATE students SET cgpa=0 WHERE student_id=100001;--,Traditional,True,True,False,False,False,True,3.6306,Request blocked: suspicious input detected in name.
+UPD-02,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE student_id=100001;--,Traditional,True,True,False,False,False,True,6.5645,Request blocked: suspicious input detected in name.
+UPD-03,UPDATE/DELETE,malicious,name,' OR 1=1; UPDATE students SET cgpa=0;--,Traditional,True,True,False,False,False,True,2.8751,Request blocked: suspicious input detected in name.
+UPD-04,UPDATE/DELETE,malicious,name,'; DELETE FROM students;--,Traditional,True,True,False,False,False,True,3.5523,Request blocked: suspicious input detected in name.
+UPD-05,UPDATE/DELETE,malicious,name,'; UPDATE students SET semester=1;--,Traditional,True,True,False,False,False,True,2.9256,Request blocked: suspicious input detected in name.
+UPD-06,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE department='CSE';--,Traditional,True,True,False,False,False,True,3.5052,Request blocked: suspicious input detected in name.
+UPD-07,UPDATE/DELETE,malicious,name,'; UPDATE students SET email='x@example.test';--,Traditional,True,True,False,False,False,True,4.0182,Request blocked: suspicious input detected in name.
+UPD-08,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE cgpa<5;--,Traditional,True,True,False,False,False,True,3.9169,Request blocked: suspicious input detected in name.
+UPD-09,UPDATE/DELETE,malicious,name,'; UPDATE students SET name='changed';--,Traditional,True,True,False,False,False,True,2.6545,Request blocked: suspicious input detected in name.
+UPD-10,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE semester=8;--,Traditional,True,True,False,False,False,True,2.7514,Request blocked: suspicious input detected in name.
+SCH-01,Schema manipulation,malicious,name,'; DROP TABLE students;--,Traditional,True,True,False,False,False,True,3.1126,Request blocked: suspicious input detected in name.
+SCH-02,Schema manipulation,malicious,name,'; ALTER TABLE students ADD COLUMN hacked TEXT;--,Traditional,True,True,False,False,False,True,3.1218,Request blocked: suspicious input detected in name.
+SCH-03,Schema manipulation,malicious,name,'; CREATE TABLE hacked(id INTEGER);--,Traditional,True,True,False,False,False,True,2.8131,Request blocked: suspicious input detected in name.
+SCH-04,Schema manipulation,malicious,name,'; DROP TABLE security_events;--,Traditional,True,True,False,False,False,True,3.4316,Request blocked: suspicious input detected in name.
+SCH-05,Schema manipulation,malicious,name,'; CREATE TABLE users(id INTEGER);--,Traditional,True,True,False,False,False,True,3.472,Request blocked: suspicious input detected in name.
+SCH-06,Schema manipulation,malicious,name,'; ALTER TABLE students RENAME TO old_students;--,Traditional,True,True,False,False,False,True,3.0745,Request blocked: suspicious input detected in name.
+SCH-07,Schema manipulation,malicious,name,'; DROP INDEX idx_students_name;--,Traditional,True,True,False,False,False,True,3.5457,Request blocked: suspicious input detected in name.
+SCH-08,Schema manipulation,malicious,name,'; CREATE INDEX hacked_idx ON students(name);--,Traditional,True,True,False,False,False,True,3.668,Request blocked: suspicious input detected in name.
+SCH-09,Schema manipulation,malicious,name,'; ATTACH DATABASE 'other.db' AS other;--,Traditional,True,True,False,False,False,True,2.9816,Request blocked: suspicious input detected in name.
+SCH-10,Schema manipulation,malicious,name,'; DETACH DATABASE main;--,Traditional,True,True,False,False,False,True,3.4175,Request blocked: suspicious input detected in name.
+LEG-NAME-01,Legitimate,legitimate,name,Akhil,Traditional,False,False,True,True,True,True,4.7638,
+LEG-NAME-02,Legitimate,legitimate,name,Arun,Traditional,False,False,True,True,True,True,3.6804,
+LEG-NAME-03,Legitimate,legitimate,name,Ananya,Traditional,False,False,True,True,True,True,5.9436,
+LEG-NAME-04,Legitimate,legitimate,name,Rahul,Traditional,False,False,True,True,True,True,5.4105,
+LEG-NAME-05,Legitimate,legitimate,name,Sneha,Traditional,False,False,True,True,True,True,4.1916,
+LEG-NAME-06,Legitimate,legitimate,name,John,Traditional,False,False,True,True,True,True,5.8482,
+LEG-NAME-07,Legitimate,legitimate,name,Mary,Traditional,False,False,True,True,True,True,4.3293,
+LEG-NAME-08,Legitimate,legitimate,name,David,Traditional,False,False,True,True,True,True,5.7866,
+LEG-NAME-09,Legitimate,legitimate,name,Priya,Traditional,False,False,True,True,True,True,3.8861,
+LEG-NAME-10,Legitimate,legitimate,name,Meera,Traditional,False,False,True,True,True,True,3.9709,
+LEG-NAME-11,Legitimate,legitimate,name,O'Neil,Traditional,False,False,True,True,True,True,4.4929,
+LEG-NAME-12,Legitimate,legitimate,name,D'Souza,Traditional,False,False,True,True,True,True,5.9796,
+LEG-NAME-13,Legitimate,legitimate,name,Anne-Marie,Traditional,False,False,True,True,True,True,4.5276,
+LEG-NAME-14,Legitimate,legitimate,name,Jean Paul,Traditional,False,False,True,True,True,True,4.0529,
+LEG-NAME-15,Legitimate,legitimate,name,Mary Jane,Traditional,False,False,True,True,True,True,4.2821,
+LEG-NAME-16,Legitimate,legitimate,name,Ravi Kumar,Traditional,False,False,True,True,True,True,5.2531,
+LEG-NAME-17,Legitimate,legitimate,name,Akhil V A,Traditional,False,False,True,True,True,True,5.6287,
+LEG-NAME-18,Legitimate,legitimate,name,Jose,Traditional,False,False,True,True,True,True,5.0059,
+LEG-NAME-19,Legitimate,legitimate,name,Ibrahim,Traditional,False,False,True,True,True,True,3.8523,
+LEG-NAME-20,Legitimate,legitimate,name,Thomas,Traditional,False,False,True,True,True,True,4.1206,
+LEG-NAME-21,Legitimate,legitimate,name,Nikhil,Traditional,False,False,True,True,True,True,3.7415,
+LEG-NAME-22,Legitimate,legitimate,name,Sanjay,Traditional,False,False,True,True,True,True,4.129,
+LEG-NAME-23,Legitimate,legitimate,name,Asha,Traditional,False,False,True,True,True,True,4.6737,
+LEG-NAME-24,Legitimate,legitimate,name,Neha,Traditional,False,False,True,True,True,True,4.3108,
+LEG-NAME-25,Legitimate,legitimate,name,Vishnu,Traditional,False,False,True,True,True,True,3.4258,
+LEG-NAME-26,Legitimate,legitimate,name,Adithya,Traditional,False,False,True,True,True,True,4.5468,
+LEG-NAME-27,Legitimate,legitimate,name,Riya,Traditional,False,False,True,True,True,True,3.2009,
+LEG-NAME-28,Legitimate,legitimate,name,Alan,Traditional,False,False,True,True,True,True,3.9667,
+LEG-NAME-29,Legitimate,legitimate,name,Kevin,Traditional,False,False,True,True,True,True,4.4183,
+LEG-NAME-30,Legitimate,legitimate,name,Mathew,Traditional,False,False,True,True,True,True,4.1913,
+LEG-NAME-31,Legitimate,legitimate,name,Sara,Traditional,False,False,True,True,True,True,5.4452,
+LEG-NAME-32,Legitimate,legitimate,name,Mohan,Traditional,False,False,True,True,True,True,5.0518,
+LEG-NAME-33,Legitimate,legitimate,name,Lakshmi,Traditional,False,False,True,True,True,True,4.643,
+LEG-NAME-34,Legitimate,legitimate,name,Divya,Traditional,False,False,True,True,True,True,4.934,
+LEG-NAME-35,Legitimate,legitimate,name,Kiran,Traditional,False,False,True,True,True,True,3.2402,
+LEG-NAME-36,Legitimate,legitimate,name,Anil,Traditional,False,False,True,True,True,True,3.8911,
+LEG-NAME-37,Legitimate,legitimate,name,Sreya,Traditional,False,False,True,True,True,True,3.961,
+LEG-NAME-38,Legitimate,legitimate,name,Fathima,Traditional,False,False,True,True,True,True,5.2387,
+LEG-NAME-39,Legitimate,legitimate,name,George,Traditional,False,False,True,True,True,True,4.2947,
+LEG-NAME-40,Legitimate,legitimate,name,Binu,Traditional,False,False,True,True,True,True,4.0092,
+LEG-NAME-41,Legitimate,legitimate,name,Rohit,Traditional,False,False,True,True,True,True,3.8236,
+LEG-NAME-42,Legitimate,legitimate,name,Aparna,Traditional,False,False,True,True,True,True,3.9203,
+LEG-NAME-43,Legitimate,legitimate,name,Suresh,Traditional,False,False,True,True,True,True,4.5005,
+LEG-NAME-44,Legitimate,legitimate,name,Manu,Traditional,False,False,True,True,True,True,3.8894,
+LEG-NAME-45,Legitimate,legitimate,name,Nandana,Traditional,False,False,True,True,True,True,4.4606,
+LEG-NAME-46,Legitimate,legitimate,name,Hari,Traditional,False,False,True,True,True,True,4.8232,
+LEG-NAME-47,Legitimate,legitimate,name,Jithin,Traditional,False,False,True,True,True,True,4.1864,
+LEG-NAME-48,Legitimate,legitimate,name,Anoop,Traditional,False,False,True,True,True,True,5.0307,
+LEG-NAME-49,Legitimate,legitimate,name,Nisha,Traditional,False,False,True,True,True,True,5.2067,
+LEG-NAME-50,Legitimate,legitimate,name,Reshma,Traditional,False,False,True,True,True,True,4.2281,
+LEG-DEPT-01,Legitimate,legitimate,department,CSE,Traditional,False,False,True,True,True,True,3.142,
+LEG-DEPT-02,Legitimate,legitimate,department,ECE,Traditional,False,False,True,True,True,True,3.684,
+LEG-DEPT-03,Legitimate,legitimate,department,EEE,Traditional,False,False,True,True,True,True,4.5782,
+LEG-DEPT-04,Legitimate,legitimate,department,IT,Traditional,False,False,True,True,True,True,3.8348,
+LEG-DEPT-05,Legitimate,legitimate,department,ME,Traditional,False,False,True,True,True,True,3.4309,
+LEG-DEPT-06,Legitimate,legitimate,department,CE,Traditional,False,False,True,True,True,True,5.5026,
+LEG-DEPT-07,Legitimate,legitimate,department,CSE,Traditional,False,False,True,True,True,True,5.6359,
+LEG-DEPT-08,Legitimate,legitimate,department,ECE,Traditional,False,False,True,True,True,True,3.4462,
+LEG-DEPT-09,Legitimate,legitimate,department,EEE,Traditional,False,False,True,True,True,True,3.2488,
+LEG-DEPT-10,Legitimate,legitimate,department,IT,Traditional,False,False,True,True,True,True,3.1113,
+LEG-DEPT-11,Legitimate,legitimate,department,ME,Traditional,False,False,True,True,True,True,3.8905,
+LEG-DEPT-12,Legitimate,legitimate,department,CE,Traditional,False,False,True,True,True,True,3.2632,
+LEG-DEPT-13,Legitimate,legitimate,department,CSE,Traditional,False,False,True,True,True,True,3.6962,
+LEG-DEPT-14,Legitimate,legitimate,department,ECE,Traditional,False,False,True,True,True,True,3.9341,
+LEG-DEPT-15,Legitimate,legitimate,department,EEE,Traditional,False,False,True,True,True,True,4.4345,
+LEG-DEPT-16,Legitimate,legitimate,department,IT,Traditional,False,False,True,True,True,True,3.8437,
+LEG-DEPT-17,Legitimate,legitimate,department,ME,Traditional,False,False,True,True,True,True,2.8446,
+LEG-DEPT-18,Legitimate,legitimate,department,CE,Traditional,False,False,True,True,True,True,2.7658,
+LEG-DEPT-19,Legitimate,legitimate,department,CSE,Traditional,False,False,True,True,True,True,3.9497,
+LEG-DEPT-20,Legitimate,legitimate,department,ECE,Traditional,False,False,True,True,True,True,3.5147,
+LEG-DEPT-21,Legitimate,legitimate,department,EEE,Traditional,False,False,True,True,True,True,3.3316,
+LEG-DEPT-22,Legitimate,legitimate,department,IT,Traditional,False,False,True,True,True,True,3.4193,
+LEG-DEPT-23,Legitimate,legitimate,department,ME,Traditional,False,False,True,True,True,True,3.9509,
+LEG-DEPT-24,Legitimate,legitimate,department,CE,Traditional,False,False,True,True,True,True,3.6247,
+LEG-DEPT-25,Legitimate,legitimate,department,CSE,Traditional,False,False,True,True,True,True,4.3712,
+LEG-SEM-01,Legitimate,legitimate,semester,1,Traditional,False,False,True,True,True,True,3.4959,
+LEG-SEM-02,Legitimate,legitimate,semester,2,Traditional,False,False,True,True,True,True,4.4022,
+LEG-SEM-03,Legitimate,legitimate,semester,3,Traditional,False,False,True,True,True,True,5.0107,
+LEG-SEM-04,Legitimate,legitimate,semester,4,Traditional,False,False,True,True,True,True,3.5306,
+LEG-SEM-05,Legitimate,legitimate,semester,5,Traditional,False,False,True,True,True,True,3.7209,
+LEG-SEM-06,Legitimate,legitimate,semester,6,Traditional,False,False,True,True,True,True,3.5547,
+LEG-SEM-07,Legitimate,legitimate,semester,7,Traditional,False,False,True,True,True,True,3.4262,
+LEG-SEM-08,Legitimate,legitimate,semester,8,Traditional,False,False,True,True,True,True,3.5512,
+LEG-SEM-09,Legitimate,legitimate,semester,1,Traditional,False,False,True,True,True,True,4.4503,
+LEG-SEM-10,Legitimate,legitimate,semester,2,Traditional,False,False,True,True,True,True,3.3137,
+LEG-SEM-11,Legitimate,legitimate,semester,3,Traditional,False,False,True,True,True,True,3.2367,
+LEG-SEM-12,Legitimate,legitimate,semester,4,Traditional,False,False,True,True,True,True,3.5843,
+LEG-SEM-13,Legitimate,legitimate,semester,5,Traditional,False,False,True,True,True,True,5.3714,
+LEG-SEM-14,Legitimate,legitimate,semester,6,Traditional,False,False,True,True,True,True,4.4622,
+LEG-SEM-15,Legitimate,legitimate,semester,7,Traditional,False,False,True,True,True,True,4.6265,
+LEG-SEM-16,Legitimate,legitimate,semester,8,Traditional,False,False,True,True,True,True,3.5513,
+LEG-SEM-17,Legitimate,legitimate,semester,1,Traditional,False,False,True,True,True,True,3.4533,
+LEG-SEM-18,Legitimate,legitimate,semester,2,Traditional,False,False,True,True,True,True,3.5059,
+LEG-SEM-19,Legitimate,legitimate,semester,3,Traditional,False,False,True,True,True,True,4.1857,
+LEG-SEM-20,Legitimate,legitimate,semester,4,Traditional,False,False,True,True,True,True,3.6735,
+LEG-SEM-21,Legitimate,legitimate,semester,5,Traditional,False,False,True,True,True,True,4.866,
+LEG-SEM-22,Legitimate,legitimate,semester,6,Traditional,False,False,True,True,True,True,4.1997,
+LEG-SEM-23,Legitimate,legitimate,semester,7,Traditional,False,False,True,True,True,True,3.4214,
+LEG-SEM-24,Legitimate,legitimate,semester,8,Traditional,False,False,True,True,True,True,4.0072,
+LEG-SEM-25,Legitimate,legitimate,semester,1,Traditional,False,False,True,True,True,True,3.5449,
+BOO-01,Boolean-based,malicious,name,' OR 1=1 --,Advanced,N/A,False,True,True,False,True,5.0302,
+BOO-02,Boolean-based,malicious,name,' OR '1'='1,Advanced,N/A,False,True,True,False,True,5.7649,
+BOO-03,Boolean-based,malicious,name,""" OR ""1""=""1",Advanced,N/A,False,True,True,False,True,5.8428,
+BOO-04,Boolean-based,malicious,name,admin' OR '1'='1,Advanced,N/A,False,True,True,False,True,5.6825,
+BOO-05,Boolean-based,malicious,name,' OR 1=1#,Advanced,N/A,False,True,True,False,True,5.1093,
+BOO-06,Boolean-based,malicious,name,') OR ('1'='1,Advanced,N/A,False,True,True,False,True,5.4731,
+BOO-07,Boolean-based,malicious,name,' OR 2>1 --,Advanced,N/A,False,True,True,False,True,5.2761,
+BOO-08,Boolean-based,malicious,name,1 OR 1=1,Advanced,N/A,False,True,True,False,True,5.1796,
+BOO-09,Boolean-based,malicious,name,' AND 1=1 --,Advanced,N/A,False,True,True,False,True,5.1739,
+BOO-10,Boolean-based,malicious,name,' OR 'a'='a,Advanced,N/A,False,True,True,False,True,5.1802,
+BOO-11,Boolean-based,malicious,name,') OR 1=1 --,Advanced,N/A,False,True,True,False,True,5.7208,
+BOO-12,Boolean-based,malicious,name,admin') OR ('x'='x,Advanced,N/A,False,True,True,False,True,6.0927,
+BOO-13,Boolean-based,malicious,name,' OR 5=5 --,Advanced,N/A,False,True,True,False,True,5.4881,
+BOO-14,Boolean-based,malicious,name,' OR 7>3 --,Advanced,N/A,False,True,True,False,True,5.1432,
+BOO-15,Boolean-based,malicious,name,' AND 'x'='x,Advanced,N/A,False,True,True,False,True,5.1469,
+BOO-16,Boolean-based,malicious,name,1' OR '1'='1' --,Advanced,N/A,False,True,True,False,True,5.9323,
+BOO-17,Boolean-based,malicious,name,') OR ('a'='a,Advanced,N/A,False,True,True,False,True,6.819,
+BOO-18,Boolean-based,malicious,name,' OR 9=9#,Advanced,N/A,False,True,True,False,True,6.006,
+BOO-19,Boolean-based,malicious,name,' OR 4<5 --,Advanced,N/A,False,True,True,False,True,5.4374,
+BOO-20,Boolean-based,malicious,name,' OR TRUE --,Advanced,N/A,False,True,True,False,True,5.8961,
+UNI-01,UNION-based,malicious,name,' UNION SELECT NULL --,Advanced,N/A,False,True,True,False,True,5.6596,
+UNI-02,UNION-based,malicious,name,"' UNION SELECT 1,2,3 --",Advanced,N/A,False,True,True,False,True,5.1247,
+UNI-03,UNION-based,malicious,name,' UNION ALL SELECT NULL --,Advanced,N/A,False,True,True,False,True,5.043,
+UNI-04,UNION-based,malicious,name,' UNION SELECT name FROM students --,Advanced,N/A,False,True,True,False,True,5.3577,
+UNI-05,UNION-based,malicious,name,' UNION SELECT student_id FROM students --,Advanced,N/A,False,True,True,False,True,4.7792,
+UNI-06,UNION-based,malicious,name,' UNION SELECT email FROM students --,Advanced,N/A,False,True,True,False,True,6.1788,
+UNI-07,UNION-based,malicious,name,"' UNION SELECT 1,2,3,4 --",Advanced,N/A,False,True,True,False,True,5.7986,
+UNI-08,UNION-based,malicious,name,"' UNION ALL SELECT 1,2 --",Advanced,N/A,False,True,True,False,True,5.3079,
+UNI-09,UNION-based,malicious,name,' UNION SELECT department FROM students --,Advanced,N/A,False,True,True,False,True,5.4922,
+UNI-10,UNION-based,malicious,name,' UNION SELECT cgpa FROM students --,Advanced,N/A,False,True,True,False,True,5.1747,
+UNI-11,UNION-based,malicious,name,' UNION SELECT semester FROM students --,Advanced,N/A,False,True,True,False,True,5.127,
+UNI-12,UNION-based,malicious,name,' UNION SELECT admission_year FROM students --,Advanced,N/A,False,True,True,False,True,4.8723,
+UNI-13,UNION-based,malicious,name,"' UNION SELECT NULL,NULL --",Advanced,N/A,False,True,True,False,True,31.3831,
+UNI-14,UNION-based,malicious,name,"' UNION ALL SELECT name,email FROM students --",Advanced,N/A,False,True,True,False,True,5.6375,
+UNI-15,UNION-based,malicious,name,"' UNION SELECT student_id,name FROM students --",Advanced,N/A,False,True,True,False,True,5.5389,
+UNI-16,UNION-based,malicious,name,' UNION SELECT 1 --,Advanced,N/A,False,True,True,False,True,5.7472,
+UNI-17,UNION-based,malicious,name,' UNION SELECT 'test' --,Advanced,N/A,False,True,True,False,True,7.6264,
+UNI-18,UNION-based,malicious,name,' UNION ALL SELECT department FROM students --,Advanced,N/A,False,True,True,False,True,4.8846,
+UNI-19,UNION-based,malicious,name,"' UNION SELECT email, name FROM students --",Advanced,N/A,False,True,True,False,True,6.2234,
+UNI-20,UNION-based,malicious,name,"' UNION SELECT NULL,NULL,NULL --",Advanced,N/A,False,True,True,False,True,5.4422,
+COM-01,Comment-based,malicious,name,admin'--,Advanced,N/A,False,True,True,False,True,6.7967,
+COM-02,Comment-based,malicious,name,admin' #,Advanced,N/A,False,True,True,False,True,6.0746,
+COM-03,Comment-based,malicious,name,' OR 1=1 --,Advanced,N/A,False,True,True,False,True,5.3186,
+COM-04,Comment-based,malicious,name,' OR 1=1 #,Advanced,N/A,False,True,True,False,True,5.6657,
+COM-05,Comment-based,malicious,name,test'/*,Advanced,N/A,False,True,True,False,True,5.5696,
+COM-06,Comment-based,malicious,name,name'-- ,Advanced,N/A,False,True,True,False,True,5.3794,
+COM-07,Comment-based,malicious,name,';--,Advanced,N/A,False,True,True,False,True,5.1392,
+COM-08,Comment-based,malicious,name,'#,Advanced,N/A,False,True,True,False,True,4.9076,
+COM-09,Comment-based,malicious,name,admin')--,Advanced,N/A,False,True,True,False,True,5.2561,
+COM-10,Comment-based,malicious,name,' OR 'x'='x'--,Advanced,N/A,False,True,True,False,True,7.3958,
+COM-11,Comment-based,malicious,name,student'/*comment*/,Advanced,N/A,False,True,True,False,True,5.046,
+COM-12,Comment-based,malicious,name,' AND 1=1--,Advanced,N/A,False,True,True,False,True,42.7696,
+COM-13,Comment-based,malicious,name,test'/**/--,Advanced,N/A,False,True,True,False,True,5.1494,
+COM-14,Comment-based,malicious,name,' OR 2=2#,Advanced,N/A,False,True,True,False,True,5.9991,
+COM-15,Comment-based,malicious,name,user'--comment,Advanced,N/A,False,True,True,False,True,6.2257,
+ERR-01,Error-based,malicious,name,' AND 1=CAST('x' AS INTEGER) --,Advanced,N/A,False,True,True,False,True,6.1432,
+ERR-02,Error-based,malicious,name,' AND abs(-9223372036854775808) --,Advanced,N/A,False,True,True,False,True,6.0523,
+ERR-03,Error-based,malicious,name,' AND load_extension('x') --,Advanced,N/A,False,True,True,False,True,6.2443,
+ERR-04,Error-based,malicious,name,' AND randomblob(100000000) --,Advanced,N/A,False,True,True,False,True,5.7408,
+ERR-05,Error-based,malicious,name,"' AND json_extract('invalid','$.x') --",Advanced,N/A,False,True,True,False,True,6.8418,
+ERR-06,Error-based,malicious,name,' AND zeroblob(-1) --,Advanced,N/A,False,True,True,False,True,5.1516,
+ERR-07,Error-based,malicious,name,"' AND substr('x',-1,-1) --",Advanced,N/A,False,True,True,False,True,6.5686,
+ERR-08,Error-based,malicious,name,' AND unicode('x')=1 --,Advanced,N/A,False,True,True,False,True,5.1006,
+ERR-09,Error-based,malicious,name,"' AND printf('%999999999s','x') --",Advanced,N/A,False,True,True,False,True,4.7069,
+ERR-10,Error-based,malicious,name,' AND json('invalid') --,Advanced,N/A,False,True,True,False,True,4.7873,
+ERR-11,Error-based,malicious,name,' AND date('invalid')='x' --,Advanced,N/A,False,True,True,False,True,4.451,
+ERR-12,Error-based,malicious,name,' AND char(-1)='x' --,Advanced,N/A,False,True,True,False,True,4.4359,
+ERR-13,Error-based,malicious,name,' AND hex(randomblob(10))='x' --,Advanced,N/A,False,True,True,False,True,4.6263,
+ERR-14,Error-based,malicious,name,"' AND replace('x','x','y')='z' --",Advanced,N/A,False,True,True,False,True,5.5348,
+ERR-15,Error-based,malicious,name,' AND lower('X')='x' --,Advanced,N/A,False,True,True,False,True,5.4694,
+STA-01,Stacked queries,malicious,name,'; SELECT * FROM students;--,Advanced,N/A,False,True,True,False,True,5.2845,
+STA-02,Stacked queries,malicious,name,'; SELECT 1;--,Advanced,N/A,False,True,True,False,True,6.2717,
+STA-03,Stacked queries,malicious,name,'; DELETE FROM students;--,Advanced,N/A,False,True,True,False,True,5.5019,
+STA-04,Stacked queries,malicious,name,'; UPDATE students SET cgpa=0;--,Advanced,N/A,False,True,True,False,True,5.2399,
+STA-05,Stacked queries,malicious,name,'; INSERT INTO students VALUES(1);--,Advanced,N/A,False,True,True,False,True,5.2898,
+STA-06,Stacked queries,malicious,name,'; DROP TABLE students;--,Advanced,N/A,False,True,True,False,True,6.3816,
+STA-07,Stacked queries,malicious,name,'; ALTER TABLE students ADD COLUMN test TEXT;--,Advanced,N/A,False,True,True,False,True,6.2303,
+STA-08,Stacked queries,malicious,name,'; CREATE TABLE injected(id INTEGER);--,Advanced,N/A,False,True,True,False,True,6.3769,
+STA-09,Stacked queries,malicious,name,'; DELETE FROM security_events;--,Advanced,N/A,False,True,True,False,True,5.2755,
+STA-10,Stacked queries,malicious,name,'; UPDATE students SET name='test';--,Advanced,N/A,False,True,True,False,True,5.5212,
+UPD-01,UPDATE/DELETE,malicious,name,'; UPDATE students SET cgpa=0 WHERE student_id=100001;--,Advanced,N/A,False,True,True,False,True,6.0432,
+UPD-02,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE student_id=100001;--,Advanced,N/A,False,True,True,False,True,5.5643,
+UPD-03,UPDATE/DELETE,malicious,name,' OR 1=1; UPDATE students SET cgpa=0;--,Advanced,N/A,False,True,True,False,True,5.4972,
+UPD-04,UPDATE/DELETE,malicious,name,'; DELETE FROM students;--,Advanced,N/A,False,True,True,False,True,5.9069,
+UPD-05,UPDATE/DELETE,malicious,name,'; UPDATE students SET semester=1;--,Advanced,N/A,False,True,True,False,True,4.5785,
+UPD-06,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE department='CSE';--,Advanced,N/A,False,True,True,False,True,7.0611,
+UPD-07,UPDATE/DELETE,malicious,name,'; UPDATE students SET email='x@example.test';--,Advanced,N/A,False,True,True,False,True,5.1816,
+UPD-08,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE cgpa<5;--,Advanced,N/A,False,True,True,False,True,6.0735,
+UPD-09,UPDATE/DELETE,malicious,name,'; UPDATE students SET name='changed';--,Advanced,N/A,False,True,True,False,True,5.9167,
+UPD-10,UPDATE/DELETE,malicious,name,'; DELETE FROM students WHERE semester=8;--,Advanced,N/A,False,True,True,False,True,5.3757,
+SCH-01,Schema manipulation,malicious,name,'; DROP TABLE students;--,Advanced,N/A,False,True,True,False,True,5.705,
+SCH-02,Schema manipulation,malicious,name,'; ALTER TABLE students ADD COLUMN hacked TEXT;--,Advanced,N/A,False,True,True,False,True,5.4075,
+SCH-03,Schema manipulation,malicious,name,'; CREATE TABLE hacked(id INTEGER);--,Advanced,N/A,False,True,True,False,True,5.2837,
+SCH-04,Schema manipulation,malicious,name,'; DROP TABLE security_events;--,Advanced,N/A,False,True,True,False,True,5.2756,
+SCH-05,Schema manipulation,malicious,name,'; CREATE TABLE users(id INTEGER);--,Advanced,N/A,False,True,True,False,True,6.257,
+SCH-06,Schema manipulation,malicious,name,'; ALTER TABLE students RENAME TO old_students;--,Advanced,N/A,False,True,True,False,True,5.0129,
+SCH-07,Schema manipulation,malicious,name,'; DROP INDEX idx_students_name;--,Advanced,N/A,False,True,True,False,True,5.0083,
+SCH-08,Schema manipulation,malicious,name,'; CREATE INDEX hacked_idx ON students(name);--,Advanced,N/A,False,True,True,False,True,5.3294,
+SCH-09,Schema manipulation,malicious,name,'; ATTACH DATABASE 'other.db' AS other;--,Advanced,N/A,False,True,True,False,True,5.2038,
+SCH-10,Schema manipulation,malicious,name,'; DETACH DATABASE main;--,Advanced,N/A,False,True,True,False,True,8.606,
+LEG-NAME-01,Legitimate,legitimate,name,Akhil,Advanced,N/A,False,True,True,True,True,4.5869,
+LEG-NAME-02,Legitimate,legitimate,name,Arun,Advanced,N/A,False,True,True,True,True,4.6963,
+LEG-NAME-03,Legitimate,legitimate,name,Ananya,Advanced,N/A,False,True,True,True,True,6.1994,
+LEG-NAME-04,Legitimate,legitimate,name,Rahul,Advanced,N/A,False,True,True,True,True,5.0525,
+LEG-NAME-05,Legitimate,legitimate,name,Sneha,Advanced,N/A,False,True,True,True,True,5.3711,
+LEG-NAME-06,Legitimate,legitimate,name,John,Advanced,N/A,False,True,True,True,True,5.3098,
+LEG-NAME-07,Legitimate,legitimate,name,Mary,Advanced,N/A,False,True,True,True,True,5.8343,
+LEG-NAME-08,Legitimate,legitimate,name,David,Advanced,N/A,False,True,True,True,True,5.5825,
+LEG-NAME-09,Legitimate,legitimate,name,Priya,Advanced,N/A,False,True,True,True,True,4.7151,
+LEG-NAME-10,Legitimate,legitimate,name,Meera,Advanced,N/A,False,True,True,True,True,4.6659,
+LEG-NAME-11,Legitimate,legitimate,name,O'Neil,Advanced,N/A,False,True,True,True,True,5.9634,
+LEG-NAME-12,Legitimate,legitimate,name,D'Souza,Advanced,N/A,False,True,True,True,True,5.3481,
+LEG-NAME-13,Legitimate,legitimate,name,Anne-Marie,Advanced,N/A,False,True,True,True,True,5.2603,
+LEG-NAME-14,Legitimate,legitimate,name,Jean Paul,Advanced,N/A,False,True,True,True,True,5.4107,
+LEG-NAME-15,Legitimate,legitimate,name,Mary Jane,Advanced,N/A,False,True,True,True,True,5.3401,
+LEG-NAME-16,Legitimate,legitimate,name,Ravi Kumar,Advanced,N/A,False,True,True,True,True,4.9666,
+LEG-NAME-17,Legitimate,legitimate,name,Akhil V A,Advanced,N/A,False,True,True,True,True,6.6107,
+LEG-NAME-18,Legitimate,legitimate,name,Jose,Advanced,N/A,False,True,True,True,True,5.9396,
+LEG-NAME-19,Legitimate,legitimate,name,Ibrahim,Advanced,N/A,False,True,True,True,True,5.4814,
+LEG-NAME-20,Legitimate,legitimate,name,Thomas,Advanced,N/A,False,True,True,True,True,4.5003,
+LEG-NAME-21,Legitimate,legitimate,name,Nikhil,Advanced,N/A,False,True,True,True,True,5.9393,
+LEG-NAME-22,Legitimate,legitimate,name,Sanjay,Advanced,N/A,False,True,True,True,True,6.9532,
+LEG-NAME-23,Legitimate,legitimate,name,Asha,Advanced,N/A,False,True,True,True,True,4.8382,
+LEG-NAME-24,Legitimate,legitimate,name,Neha,Advanced,N/A,False,True,True,True,True,4.2474,
+LEG-NAME-25,Legitimate,legitimate,name,Vishnu,Advanced,N/A,False,True,True,True,True,4.1336,
+LEG-NAME-26,Legitimate,legitimate,name,Adithya,Advanced,N/A,False,True,True,True,True,6.3405,
+LEG-NAME-27,Legitimate,legitimate,name,Riya,Advanced,N/A,False,True,True,True,True,5.274,
+LEG-NAME-28,Legitimate,legitimate,name,Alan,Advanced,N/A,False,True,True,True,True,6.0834,
+LEG-NAME-29,Legitimate,legitimate,name,Kevin,Advanced,N/A,False,True,True,True,True,5.3916,
+LEG-NAME-30,Legitimate,legitimate,name,Mathew,Advanced,N/A,False,True,True,True,True,6.008,
+LEG-NAME-31,Legitimate,legitimate,name,Sara,Advanced,N/A,False,True,True,True,True,5.7201,
+LEG-NAME-32,Legitimate,legitimate,name,Mohan,Advanced,N/A,False,True,True,True,True,5.2745,
+LEG-NAME-33,Legitimate,legitimate,name,Lakshmi,Advanced,N/A,False,True,True,True,True,5.1948,
+LEG-NAME-34,Legitimate,legitimate,name,Divya,Advanced,N/A,False,True,True,True,True,5.2469,
+LEG-NAME-35,Legitimate,legitimate,name,Kiran,Advanced,N/A,False,True,True,True,True,4.6594,
+LEG-NAME-36,Legitimate,legitimate,name,Anil,Advanced,N/A,False,True,True,True,True,5.6677,
+LEG-NAME-37,Legitimate,legitimate,name,Sreya,Advanced,N/A,False,True,True,True,True,5.377,
+LEG-NAME-38,Legitimate,legitimate,name,Fathima,Advanced,N/A,False,True,True,True,True,5.6313,
+LEG-NAME-39,Legitimate,legitimate,name,George,Advanced,N/A,False,True,True,True,True,6.053,
+LEG-NAME-40,Legitimate,legitimate,name,Binu,Advanced,N/A,False,True,True,True,True,5.6917,
+LEG-NAME-41,Legitimate,legitimate,name,Rohit,Advanced,N/A,False,True,True,True,True,4.6339,
+LEG-NAME-42,Legitimate,legitimate,name,Aparna,Advanced,N/A,False,True,True,True,True,5.9719,
+LEG-NAME-43,Legitimate,legitimate,name,Suresh,Advanced,N/A,False,True,True,True,True,7.4232,
+LEG-NAME-44,Legitimate,legitimate,name,Manu,Advanced,N/A,False,True,True,True,True,4.3135,
+LEG-NAME-45,Legitimate,legitimate,name,Nandana,Advanced,N/A,False,True,True,True,True,4.5983,
+LEG-NAME-46,Legitimate,legitimate,name,Hari,Advanced,N/A,False,True,True,True,True,4.7177,
+LEG-NAME-47,Legitimate,legitimate,name,Jithin,Advanced,N/A,False,True,True,True,True,5.3274,
+LEG-NAME-48,Legitimate,legitimate,name,Anoop,Advanced,N/A,False,True,True,True,True,5.96,
+LEG-NAME-49,Legitimate,legitimate,name,Nisha,Advanced,N/A,False,True,True,True,True,4.9602,
+LEG-NAME-50,Legitimate,legitimate,name,Reshma,Advanced,N/A,False,True,True,True,True,5.625,
+LEG-DEPT-01,Legitimate,legitimate,department,CSE,Advanced,N/A,False,True,True,True,True,6.3187,
+LEG-DEPT-02,Legitimate,legitimate,department,ECE,Advanced,N/A,False,True,True,True,True,4.4929,
+LEG-DEPT-03,Legitimate,legitimate,department,EEE,Advanced,N/A,False,True,True,True,True,4.9149,
+LEG-DEPT-04,Legitimate,legitimate,department,IT,Advanced,N/A,False,True,True,True,True,4.6998,
+LEG-DEPT-05,Legitimate,legitimate,department,ME,Advanced,N/A,False,True,True,True,True,4.7555,
+LEG-DEPT-06,Legitimate,legitimate,department,CE,Advanced,N/A,False,True,True,True,True,4.1999,
+LEG-DEPT-07,Legitimate,legitimate,department,CSE,Advanced,N/A,False,True,True,True,True,4.7027,
+LEG-DEPT-08,Legitimate,legitimate,department,ECE,Advanced,N/A,False,True,True,True,True,6.2052,
+LEG-DEPT-09,Legitimate,legitimate,department,EEE,Advanced,N/A,False,True,True,True,True,4.9409,
+LEG-DEPT-10,Legitimate,legitimate,department,IT,Advanced,N/A,False,True,True,True,True,5.1338,
+LEG-DEPT-11,Legitimate,legitimate,department,ME,Advanced,N/A,False,True,True,True,True,4.9986,
+LEG-DEPT-12,Legitimate,legitimate,department,CE,Advanced,N/A,False,True,True,True,True,4.4404,
+LEG-DEPT-13,Legitimate,legitimate,department,CSE,Advanced,N/A,False,True,True,True,True,4.3667,
+LEG-DEPT-14,Legitimate,legitimate,department,ECE,Advanced,N/A,False,True,True,True,True,4.4171,
+LEG-DEPT-15,Legitimate,legitimate,department,EEE,Advanced,N/A,False,True,True,True,True,4.2545,
+LEG-DEPT-16,Legitimate,legitimate,department,IT,Advanced,N/A,False,True,True,True,True,4.3406,
+LEG-DEPT-17,Legitimate,legitimate,department,ME,Advanced,N/A,False,True,True,True,True,4.3345,
+LEG-DEPT-18,Legitimate,legitimate,department,CE,Advanced,N/A,False,True,True,True,True,4.5547,
+LEG-DEPT-19,Legitimate,legitimate,department,CSE,Advanced,N/A,False,True,True,True,True,3.823,
+LEG-DEPT-20,Legitimate,legitimate,department,ECE,Advanced,N/A,False,True,True,True,True,5.0341,
+LEG-DEPT-21,Legitimate,legitimate,department,EEE,Advanced,N/A,False,True,True,True,True,4.6647,
+LEG-DEPT-22,Legitimate,legitimate,department,IT,Advanced,N/A,False,True,True,True,True,4.5783,
+LEG-DEPT-23,Legitimate,legitimate,department,ME,Advanced,N/A,False,True,True,True,True,5.1733,
+LEG-DEPT-24,Legitimate,legitimate,department,CE,Advanced,N/A,False,True,True,True,True,4.3614,
+LEG-DEPT-25,Legitimate,legitimate,department,CSE,Advanced,N/A,False,True,True,True,True,3.7042,
+LEG-SEM-01,Legitimate,legitimate,semester,1,Advanced,N/A,False,True,True,True,True,4.7794,
+LEG-SEM-02,Legitimate,legitimate,semester,2,Advanced,N/A,False,True,True,True,True,3.9081,
+LEG-SEM-03,Legitimate,legitimate,semester,3,Advanced,N/A,False,True,True,True,True,4.8856,
+LEG-SEM-04,Legitimate,legitimate,semester,4,Advanced,N/A,False,True,True,True,True,5.0783,
+LEG-SEM-05,Legitimate,legitimate,semester,5,Advanced,N/A,False,True,True,True,True,4.4424,
+LEG-SEM-06,Legitimate,legitimate,semester,6,Advanced,N/A,False,True,True,True,True,3.7386,
+LEG-SEM-07,Legitimate,legitimate,semester,7,Advanced,N/A,False,True,True,True,True,4.1044,
+LEG-SEM-08,Legitimate,legitimate,semester,8,Advanced,N/A,False,True,True,True,True,4.3959,
+LEG-SEM-09,Legitimate,legitimate,semester,1,Advanced,N/A,False,True,True,True,True,4.3727,
+LEG-SEM-10,Legitimate,legitimate,semester,2,Advanced,N/A,False,True,True,True,True,3.8386,
+LEG-SEM-11,Legitimate,legitimate,semester,3,Advanced,N/A,False,True,True,True,True,4.3211,
+LEG-SEM-12,Legitimate,legitimate,semester,4,Advanced,N/A,False,True,True,True,True,4.2001,
+LEG-SEM-13,Legitimate,legitimate,semester,5,Advanced,N/A,False,True,True,True,True,6.7613,
+LEG-SEM-14,Legitimate,legitimate,semester,6,Advanced,N/A,False,True,True,True,True,4.5573,
+LEG-SEM-15,Legitimate,legitimate,semester,7,Advanced,N/A,False,True,True,True,True,4.6945,
+LEG-SEM-16,Legitimate,legitimate,semester,8,Advanced,N/A,False,True,True,True,True,3.8438,
+LEG-SEM-17,Legitimate,legitimate,semester,1,Advanced,N/A,False,True,True,True,True,5.0381,
+LEG-SEM-18,Legitimate,legitimate,semester,2,Advanced,N/A,False,True,True,True,True,4.2721,
+LEG-SEM-19,Legitimate,legitimate,semester,3,Advanced,N/A,False,True,True,True,True,4.3443,
+LEG-SEM-20,Legitimate,legitimate,semester,4,Advanced,N/A,False,True,True,True,True,3.9637,
+LEG-SEM-21,Legitimate,legitimate,semester,5,Advanced,N/A,False,True,True,True,True,3.8135,
+LEG-SEM-22,Legitimate,legitimate,semester,6,Advanced,N/A,False,True,True,True,True,3.6877,
+LEG-SEM-23,Legitimate,legitimate,semester,7,Advanced,N/A,False,True,True,True,True,4.5693,
+LEG-SEM-24,Legitimate,legitimate,semester,8,Advanced,N/A,False,True,True,True,True,4.1599,
+LEG-SEM-25,Legitimate,legitimate,semester,1,Advanced,N/A,False,True,True,True,True,5.5356,

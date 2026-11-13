@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Home | SQL Shield{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">DATABASE SECURITY RESEARCH PROJECT</p>
+
+        <h1>SQL Injection Detection<br>and Prevention Platform</h1>
+
+        <p class="hero-description">
+            A comparative analysis of traditional and advanced
+            SQL injection detection and prevention techniques
+            using SQLite.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{{ url_for('dashboard') }}" class="primary-btn">
+                Explore Dashboard
+            </a>
+
+            <a href="{{ url_for('testing') }}" class="secondary-btn">
+                Test SQL Injection
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+
+    <div class="feature-card">
+        <h3>Traditional Security</h3>
+        <p>
+            Regex-based suspicious input detection and
+            parameterized SQL queries.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Advanced Security</h3>
+        <p>
+            AST validation, query fingerprints and
+            SQLite runtime authorization.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Comparative Analysis</h3>
+        <p>
+            Evaluate detection, structural validation,
+            execution time and database integrity.
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}
